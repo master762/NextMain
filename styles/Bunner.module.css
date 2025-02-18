@@ -1,0 +1,77 @@
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 80px;
+  max-width: 1240px;
+}
+.title {
+  color: var(--White);
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 150%;
+  margin-bottom: 14px;
+}
+.desc {
+  color: var(--Grey60);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 150%;
+}
+/* карточки */
+.Cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 150px;
+}
+.card {
+  max-width: 512px;
+  height: 283px;
+  width: 100%;
+  background: linear-gradient(
+    208deg,
+    rgba(255, 0, 0, 0.1) 0%,
+    rgba(255, 0, 0, 0) 40%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  border-radius: 12px;
+  border: 1px solid;
+  border-color: var(--Black15);
+  transition: 0.3s;
+}
+.card:hover {
+  transform: scale(1.08);
+  background: linear-gradient(
+    208deg,
+    rgba(250, 250, 250, 0.1) 0%,
+    rgba(255, 0, 0, 0) 40%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-color: rgb(9, 243, 243);
+}
+.content {
+  max-width: 413px;
+  width: 100%;
+  margin: 0 auto;
+}
+.content p {
+  color: var(--Grey60);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 150%;
+}
+.cardTitle {
+  margin-top: 50px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.cardTitle h3 {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 150%;
+}

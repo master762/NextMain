@@ -1,0 +1,86 @@
+/* сброс */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Manrope", sans-serif;
+  background-color: #141414;
+}
+
+button,
+p,
+div,
+span,
+ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+button {
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:active {
+  transform: scale(0.95);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+/* цвета */
+:root {
+  --White: #fff;
+  --Black: #000;
+  --Red45: #e50000;
+  --Red50: #ff0000;
+  --Red55: #ff1919;
+  --Red60: #ff3333;
+  --Red80: #ff9999;
+  --Red90: #ffcccc;
+  --Red95: #ffe5e5;
+  --Red99: #fffafa;
+  --Black06: #0f0f0f;
+  --Black08: #141414;
+  --Black10: #1a1a1a;
+  --Black12: #1f1f1f;
+  --Black15: #262626;
+  --Black20: #333333;
+  --Black25: #404040;
+  --Black30: #4c4c4c;
+  --Grey60: #999999;
+  --Grey65: #a6a6a6;
+  --Grey70: #b3b3b3;
+  --Grey75: #bfbfbf;
+  --Grey90: #e4e4e7;
+  --Grey95: #f1f1f3;
+  --Grey97: #f7f7f8;
+  --Grey99: #fcfcfd;
+}
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+@media (max-width: 1440px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (max-width: 390px) {
+  .container {
+    max-width: 360px;
+  }
+}
