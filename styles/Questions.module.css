@@ -28,6 +28,7 @@
 .container {
   display: flex;
   gap: 80px;
+  margin-bottom: 150px;
 }
 
 .column {

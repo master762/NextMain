@@ -1,0 +1,35 @@
+.bunner {
+  width: 100%;
+  background-image: url(/img/bunner.png);
+  height: 313px;
+  margin-bottom: 150px;
+}
+.content {
+  max-width: 1440px;
+  height: 100%;
+  margin: 9 auto;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+}
+.content h2 {
+  color: var(--White);
+  font-size: 48px;
+  font-weight: 700;
+}
+.content p {
+  color: var(--Grey60);
+  font-size: 18px;
+  font-weight: 400;
+}
+.content button span {
+  color: var(--White);
+  font-weight: 600;
+  font-size: 18px;
+}
+.content button {
+  background-color: var(--Red45);
+  border-radius: 8px;
+  width: 188px;
+  height: 63px;
+}

@@ -1,3 +1,4 @@
+import TheFooter from "@/components/TheFooter";
 import TheHeader from "../components/TheHeader";
 import "./globals.css";
 import { Manrope } from "next/font/google";
@@ -9,8 +10,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ru">
       <body>
-        <TheHeader />
+        <header>
+          <TheHeader />
+        </header>
         <main>{children}</main>
+        <footer>
+          <TheFooter />
+        </footer>
       </body>
     </html>
   );
