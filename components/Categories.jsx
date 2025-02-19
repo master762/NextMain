@@ -101,56 +101,58 @@ export default function Categories() {
   };
 
   return (
-    <div className="container">
-      {/* Заголовок и кнопки переключения */}
-      <div className={styles.top}>
-        <div>
-          <h2 className={styles.title}>
-            Explore our wide variety of categories
-          </h2>
-          <p className={styles.desc}>
-            Whether you're looking for a comedy to make you laugh, a drama to
-            make you think, or a documentary to learn something new.
-          </p>
-        </div>
-        <div className={styles.controls}>
-          <button className={styles.btn} onClick={handlePrev}>
-            <img src="/img/arrowleft.png" alt="arrow left" />
-          </button>
-          <div className={styles.indicators}>
-            {categoriesData.slice(0, 5).map((_, index) => (
-              <div
-                key={index}
-                className={`${styles.indicator} ${
-                  index === currentIndex ? styles.active : ""
-                }`}
-              ></div>
-            ))}
+    <section>
+      <div className="container">
+        {/* Заголовок и кнопки переключения */}
+        <div className={styles.top}>
+          <div>
+            <h2 className={styles.title}>
+              Explore our wide variety of categories
+            </h2>
+            <p className={styles.desc}>
+              Whether you're looking for a comedy to make you laugh, a drama to
+              make you think, or a documentary to learn something new.
+            </p>
           </div>
-          <button className={styles.btn} onClick={handleNext}>
-            <img src="/img/arrowright.png" alt="arrow right" />
-          </button>
+          <div className={styles.controls}>
+            <button className={styles.btn} onClick={handlePrev}>
+              <img src="/img/arrowleft.png" alt="arrow left" />
+            </button>
+            <div className={styles.indicators}>
+              {categoriesData.slice(0, 5).map((_, index) => (
+                <div
+                  key={index}
+                  className={`${styles.indicator} ${
+                    index === currentIndex ? styles.active : ""
+                  }`}
+                ></div>
+              ))}
+            </div>
+            <button className={styles.btn} onClick={handleNext}>
+              <img src="/img/arrowright.png" alt="arrow right" />
+            </button>
+          </div>
+        </div>
+
+        {/* Категории */}
+        <div className={styles.categories}>
+          {categoriesData
+            .slice(currentIndex, currentIndex + 5)
+            .map((category, index) => (
+              <div className={styles.category} key={index}>
+                <div className={styles.images}>
+                  {category.images.map((img, imgIndex) => (
+                    <img src={img} alt="category image" key={imgIndex} />
+                  ))}
+                </div>
+                <div className={styles.categoryText}>
+                  <p>{category.name}</p>
+                  <img src="/img/arrowright.png" alt="arrow" />
+                </div>
+              </div>
+            ))}
         </div>
       </div>
-
-      {/* Категории */}
-      <div className={styles.categories}>
-        {categoriesData
-          .slice(currentIndex, currentIndex + 5)
-          .map((category, index) => (
-            <div className={styles.category} key={index}>
-              <div className={styles.images}>
-                {category.images.map((img, imgIndex) => (
-                  <img src={img} alt="category image" key={imgIndex} />
-                ))}
-              </div>
-              <div className={styles.categoryText}>
-                <p>{category.name}</p>
-                <img src="/img/arrowright.png" alt="arrow" />
-              </div>
-            </div>
-          ))}
-      </div>
-    </div>
+    </section>
   );
 }

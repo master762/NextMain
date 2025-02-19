@@ -52,44 +52,46 @@ export default function Questions() {
     setOpenIndex(openIndex === index ? null : index);
   };
   return (
-    <div className="container">
-      {/* Заголовок */}
-      <div className={styles.top}>
-        <div>
-          <h2 className={styles.title}>Frequently Asked Questions</h2>
-          <p className={styles.desc}>
-            Got questions? We've got answers! Check out our FAQ section to find
-            answers to the most common questions about StreamVibe.
-          </p>
-        </div>
-        <button className={styles.btn}>
-          <span>Ask a Question</span>
-        </button>
-      </div>
-      {/* аккордион */}
-      <div className={styles.container}>
-        {[0, 1].map((col) => (
-          <div key={col} className={styles.column}>
-            {accordionData.slice(col * 4, col * 4 + 4).map((item, index) => (
-              <div key={index} className={styles.accordionItem}>
-                <div
-                  className={styles.header}
-                  onClick={() => toggleAccordion(col * 4 + index)}
-                >
-                  <div className={styles.number}>{item.number}</div>
-                  <p className={styles.question}>{item.question}</p>
-                  <span className={styles.icon}>
-                    {openIndex === col * 4 + index ? "−" : "+"}
-                  </span>
-                </div>
-                {openIndex === col * 4 + index && (
-                  <div className={styles.answer}>{item.answer}</div>
-                )}
-              </div>
-            ))}
+    <section>
+      <div className="container">
+        {/* Заголовок */}
+        <div className={styles.top}>
+          <div>
+            <h2 className={styles.title}>Frequently Asked Questions</h2>
+            <p className={styles.desc}>
+              Got questions? We've got answers! Check out our FAQ section to
+              find answers to the most common questions about StreamVibe.
+            </p>
           </div>
-        ))}
+          <button className={styles.btn}>
+            <span>Ask a Question</span>
+          </button>
+        </div>
+        {/* аккордион */}
+        <div className={styles.container}>
+          {[0, 1].map((col) => (
+            <div key={col} className={styles.column}>
+              {accordionData.slice(col * 4, col * 4 + 4).map((item, index) => (
+                <div key={index} className={styles.accordionItem}>
+                  <div
+                    className={styles.header}
+                    onClick={() => toggleAccordion(col * 4 + index)}
+                  >
+                    <div className={styles.number}>{item.number}</div>
+                    <p className={styles.question}>{item.question}</p>
+                    <span className={styles.icon}>
+                      {openIndex === col * 4 + index ? "−" : "+"}
+                    </span>
+                  </div>
+                  {openIndex === col * 4 + index && (
+                    <div className={styles.answer}>{item.answer}</div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
