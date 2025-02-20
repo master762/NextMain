@@ -10,5 +10,5 @@ generator client {
 model Category {
   id     Int    @id @default(autoincrement())
   name   String
-  images String // Храним JSON-массив строк
+  images String
 }

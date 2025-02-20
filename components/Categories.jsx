@@ -2,12 +2,11 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/Categories.module.css";
 
-export default function Categories() {
+export default function Categories({ OnePage, TwoPage }) {
   const [categories, setCategories] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // Загружаем категории из API
     const fetchCategories = async () => {
       try {
         const response = await fetch("/api/categories");
@@ -36,13 +35,22 @@ export default function Categories() {
       <div className="container">
         <div className={styles.top}>
           <div>
-            <h2 className={styles.title}>
-              Explore our wide variety of categories
-            </h2>
-            <p className={styles.desc}>
-              Whether you're looking for a comedy to make you laugh, a drama to
-              make you think, or a documentary to learn something new.
-            </p>
+            {OnePage && (
+              <>
+                <h2 className={styles.title}>
+                  Explore our wide variety of categories
+                </h2>
+                <p className={styles.desc}>
+                  Whether you're looking for a comedy to make you laugh, a drama
+                  to make you think, or a documentary to learn something new.
+                </p>
+              </>
+            )}
+            {TwoPage && (
+              <>
+                <h2 className={styles.title}>Our Genres</h2>
+              </>
+            )}
           </div>
           <div className={styles.controls}>
             <button className={styles.btn} onClick={handlePrev}>

@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <>
       <TheHeader showTextContent={true} showBgImage={true} />
-      <Categories />
+      <Categories OnePage={true} TwoPage={false} />
       <Bunner />
       <Questions />
       <Price />

@@ -1,0 +1,25 @@
+.main {
+  width: 100%;
+  height: fit-content;
+  border-radius: 12px;
+  padding: 50px;
+  border: 1px solid var(--Black15);
+  position: relative;
+}
+.description {
+  position: absolute;
+  top: -25px;
+  left: 50px;
+  width: 116px;
+  height: 50px;
+  border-radius: 8px;
+  background-color: var(--Red45);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.description p {
+  color: var(--White);
+  font-size: 20px;
+  font-weight: 600;
+}
