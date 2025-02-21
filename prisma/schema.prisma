@@ -25,3 +25,9 @@ model Treanding {
   time  String
   views String
 }
+
+model Release {
+  id       Int    @id @default(autoincrement())
+  image    String
+  released String
+}

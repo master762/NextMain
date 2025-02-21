@@ -4,6 +4,7 @@ import styles from "../styles/MoviesBlock.module.css";
 import Categories from "@/components/Categories";
 import TopGenres from "./TopGenres";
 import Treanding from "./Treanding";
+import Releases from "../components/Releases";
 export default function MoviesBlock() {
   return (
     <div className={`${styles.main} container`}>
@@ -13,6 +14,7 @@ export default function MoviesBlock() {
       <Categories OnePage={false} TwoPage={true} />
       <TopGenres />
       <Treanding />
+      <Releases />
     </div>
   );
 }

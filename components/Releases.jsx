@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import styles from "../styles/Treanding.module.css";
+import styles from "../styles/Releases.module.css";
 
 export default function Treanding() {
   const [treandingData, setTreandingData] = useState([]);
@@ -63,15 +63,8 @@ export default function Treanding() {
             <div className={styles.item} key={index}>
               <div className={styles.itemContainer}>
                 <img src={item.image} alt="" />
-                <div className={styles.flex}>
-                  <div className={styles.time}>
-                    <img src="/img/time.png" alt="time" />
-                    <p>{item.time}</p>
-                  </div>
-                  <div className={styles.views}>
-                    <img src="/img/views.png" alt="views" />
-                    <p>{item.views}</p>
-                  </div>
+                <div className={styles.Reliased}>
+                  <p>Released at{item.datarelease}</p>
                 </div>
               </div>
             </div>
