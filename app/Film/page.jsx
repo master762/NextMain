@@ -9,7 +9,6 @@ export default function FilmPage() {
       <TheHeader showTextContent={false} showBgImage={false} />
       <Hero />
       <MoviesBlock />
-
       <TheFooter />
     </>
   );
