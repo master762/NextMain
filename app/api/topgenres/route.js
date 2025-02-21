@@ -6,8 +6,6 @@ const prisma = new PrismaClient();
 export async function GET() {
   try {
     const topGenres = await prisma.topGenre.findMany();
-
-    // Преобразуем JSON-строку в массив для каждого жанра
     const formattedGenres = topGenres.map((genre) => ({
       ...genre,
       images: JSON.parse(genre.images),

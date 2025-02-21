@@ -18,3 +18,10 @@ model TopGenre {
   name   String
   images String
 }
+
+model Treanding {
+  id    Int    @id @default(autoincrement())
+  image String
+  time  String
+  views String
+}
