@@ -6,7 +6,6 @@ import Link from "next/link";
 export default function TheHeader({ showTextContent, showBgImage }) {
   return (
     <header className={styles.header}>
-      {/* Условный рендеринг для bgimage */}
       {showBgImage ? (
         <div className={styles.bgimage}>
           <div className="container">
