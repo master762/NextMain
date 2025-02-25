@@ -6,7 +6,7 @@ export default function FilmCover() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [quality, setQuality] = useState("1080p");
   const videoRef = useRef(null);
-
+  // массив с видео
   const videoSources = {
     "1080p": "/video/video1080p.mp4",
     "720p": "/video/video720p.mp4",
