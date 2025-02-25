@@ -8,12 +8,12 @@ export default function FilmCover() {
   const videoRef = useRef(null);
 
   const videoSources = {
-    "1080p": "/img/video1080p.mp4",
-    "720p": "/img/video720p.mp4",
-    "480p": "/img/video480p.mp4",
-    "360p": "/img/video360p.mp4",
-    "240p": "/img/video240p.mp4",
-    "144p": "/img/video144p.mp4",
+    "1080p": "/video/video1080p.mp4",
+    "720p": "/video/video720p.mp4",
+    "480p": "/video/video480p.mp4",
+    "360p": "/video/video360p.mp4",
+    "240p": "/video/video240p.mp4",
+    "144p": "/video/video144p.mp4",
   };
 
   const handlePlay = () => {
