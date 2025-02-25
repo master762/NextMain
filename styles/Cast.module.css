@@ -1,0 +1,68 @@
+.cast {
+  margin-top: 30px;
+  height: 291px;
+  background-color: var(--Black10);
+  border: 1px solid var(--Black15);
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+.DescriptionContainer {
+  max-width: 957px;
+  margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.DescriptionContainer h2 {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--Grey60);
+}
+.DescriptionContainer p {
+  color: var(--White);
+  font-size: 18px;
+  font-weight: 400;
+}
+.elements {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.arrows {
+  display: flex;
+  gap: 10px;
+}
+.arrows button {
+  color: var(--Grey60);
+  font-size: 20px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--Black08);
+  border: 1px solid var(--Black15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sliderContainer {
+  overflow: hidden;
+  width: 100%;
+  gap: 20px;
+  position: relative;
+}
+.sliderContainer img {
+  width: 102px;
+  height: 109px;
+  border-radius: 12px;
+}
+.slider {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slideImage {
+  width: calc(100% / 8);
+  flex-shrink: 0;
+}

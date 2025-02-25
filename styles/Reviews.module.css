@@ -1,0 +1,255 @@
+.DescriptionContainer {
+  max-width: 957px;
+  margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.DescriptionContainer h2 {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--Grey60);
+}
+.DescriptionContainer p {
+  color: var(--White);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.Reviews {
+  background-color: var(--Black10);
+  border: 1px solid var(--Black15);
+  border-radius: 12px;
+  height: 555px;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+.add {
+  max-width: 204px;
+  width: 100%;
+  height: 58px;
+  background-color: var(--Black08);
+  border: 1px solid var(--Black15);
+  border-radius: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  display: flex;
+  color: var(--White);
+  font-size: 18px;
+  font-weight: 500;
+}
+.add span {
+  font-size: 30px;
+}
+.comments {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.comment {
+  background-color: var(--Black06);
+  border: 1px solid var(--Black15);
+  border-radius: 12px;
+  max-width: 468px;
+  width: 100%;
+  height: 265px;
+}
+.commentContainer {
+  width: 388px;
+  margin: 40px auto;
+}
+
+.RatingTitle h2 {
+  color: var(--White);
+  font-size: 20px;
+  font-weight: 500;
+}
+.RatingTitle p {
+  font-size: 18px;
+  color: var(--Grey60);
+  font-weight: 400;
+}
+.rating {
+  max-width: 147px;
+  width: 100%;
+  height: 39px;
+  border-radius: 51px;
+  background-color: var(--Black08);
+  border: 1px solid var(--Black15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.rating span {
+  color: var(--Grey60);
+  font-size: 18px;
+  font-weight: 500;
+}
+.mainText {
+  margin-top: 20px;
+}
+.mainText p {
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--Grey60);
+}
+.controlls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+.controlls button {
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--Black15);
+  background-color: var(--Black08);
+}
+.indicators {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.indicators div {
+  width: 16px;
+  height: 4px;
+  border-radius: 100px;
+  background-color: var(--Black20);
+}
+.indicators div:hover {
+  width: 23px;
+  background-color: var(--Red45);
+}
+.center {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+  margin-top: 4px;
+  align-items: center;
+}
+.star {
+  width: 18px;
+  height: 18px;
+  background-color: rgb(226, 4, 4);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+.sliderContainer {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.slider {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+/* Стили для модального окна */
+/* Стили для затемненного фона */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+/* Стили для модального окна */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.modal {
+  background-color: var(--Black08);
+  padding: 20px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.modal h3 {
+  color: var(--White);
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.modal input,
+.modal textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--Black15);
+  background-color: var(--Black06);
+  color: var(--White);
+  font-size: 16px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.modal textarea {
+  resize: none;
+  height: 80px;
+}
+
+.modal .buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.modal .buttons button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--Black08);
+  border: 1px solid var(--Black15);
+  color: var(--White);
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+.modal .buttons button:hover {
+  background-color: var(--Red45);
+}

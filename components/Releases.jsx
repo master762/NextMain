@@ -34,7 +34,7 @@ export default function Releases() {
     <div className="container">
       <div className={styles.top}>
         <div>
-          <h2 className={styles.title}>Releases</h2>
+          <h2 className={styles.title}>New Releases</h2>
         </div>
         <div className={styles.controls}>
           <button className={styles.btn} onClick={handlePrev}>

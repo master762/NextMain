@@ -8,13 +8,13 @@ const slides = [
     bg: "/img/slide1.png",
   },
   {
-    title: "A Song of Ice and Fire",
-    text: "In a land where summers span decades and winters can last a lifetime, noble houses battle for the Iron Throne. As ancient prophecies unfold and long-forgotten creatures return, the fate of Westeros hangs in the balance. From the frozen North to the burning South, a tale of power, betrayal, and destiny begins—a song of ice and fire.",
+    title: "Stranger Things",
+    text: "When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl.",
     bg: "/img/slide2.png",
   },
   {
-    title: "Ghost: The Direwolf's Legacy",
-    text: "In the frozen lands beyond the Wall, a legendary direwolf roams—silent, swift, and deadly. Bound by loyalty to his master, Jon Snow, Ghost embarks on a journey of survival, vengeance, and discovery. As ancient threats awaken and new alliances form, the fate of the North may rest in the paws of the last true guardian of House Stark.",
+    title: "Kantara",
+    text: "A fiery young man clashes with an unflinching forest officer in a south Indian village where spirituality, fate and folklore rule the lands.",
     bg: "/img/slide3.png",
   },
   {

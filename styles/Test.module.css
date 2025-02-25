@@ -1,0 +1,256 @@
+.slider {
+  width: 100%;
+  height: 835px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 20px;
+  position: relative;
+  margin-bottom: 180px;
+}
+
+.text {
+  text-align: center;
+  max-width: 1100px;
+  margin-bottom: 30px;
+}
+.text h2 {
+  color: var(--White);
+  font-size: 38px;
+  font-weight: 700;
+}
+.text p {
+  color: var(--Grey60);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  width: 100%;
+  gap: 10px;
+}
+
+.buttonContainer button:nth-child(1) {
+  max-width: 157px;
+  width: 100%;
+  height: 56px;
+  border-radius: 8px;
+  background-color: var(--Red45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  gap: 4px;
+}
+.buttonContainer button:nth-last-child(-n + 3) {
+  width: 56px;
+  height: 56px;
+  background-color: var(--Black06);
+  border: 1px solid var(--Black15);
+  color: var(--White);
+  border-radius: 8px;
+}
+.buttonContainer button:nth-child(2) {
+  font-size: 28px;
+}
+
+.span {
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 153%;
+  color: var(--White);
+}
+.other {
+  margin-top: 100px;
+  display: flex;
+  gap: 20px;
+}
+.left {
+  min-width: 1057px;
+  width: 100%;
+}
+
+.description {
+  height: 195px;
+  background-color: var(--Black10);
+  border: 1px solid var(--Black15);
+  border-radius: 12px;
+}
+.DescriptionContainer {
+  max-width: 957px;
+  margin: 0 auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.DescriptionContainer h2 {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--Grey60);
+}
+.DescriptionContainer p {
+  color: var(--White);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+/* правая часть */
+
+.right {
+  width: 519px;
+  width: 100%;
+  height: 937px;
+  background-color: var(--Black10);
+  border: 1px solid var(--Black15);
+  border-radius: 12px;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+.rightContainer {
+  max-width: 419px;
+  width: 100%;
+  margin: 0 auto;
+}
+.rightTitle {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+.rightContainer h3 {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--Grey60);
+}
+.rightContainer p {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--White);
+}
+.languagesTitle {
+  margin-top: 30px;
+  display: flex;
+  gap: 4px;
+  margin-bottom: 14px;
+}
+.languages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.languages div {
+  background-color: var(--Black08);
+  border: 1px solid var(--Black15);
+  border-radius: 8px;
+  width: 90px;
+  height: 43px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.languages div p {
+  font-size: 18;
+  font-weight: 500;
+}
+.ratingsTitle {
+  margin-top: 30px;
+  margin-bottom: 14px;
+  display: flex;
+  gap: 4px;
+}
+.starsCards {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card {
+  background-color: var(--Black06);
+  border-radius: 8px;
+  border: 1px solid var(--Black15);
+  padding: 16px;
+  max-width: 199px;
+  width: 100%;
+  height: 96px;
+}
+.stars {
+  display: flex;
+  gap: 2px;
+  margin-top: 4px;
+  align-items: center;
+}
+.star {
+  width: 18px;
+  height: 18px;
+  background-color: rgb(226, 4, 4);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
+.genresTitle {
+  display: flex;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  gap: 2px;
+  align-items: center;
+}
+.genresTitle img {
+  height: 20px;
+  width: 20px;
+}
+.genres {
+  display: flex;
+  gap: 10px;
+}
+.genres div {
+  background-color: var(--Black08);
+  border: 1px solid var(--Black15);
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+.genres div p {
+  font-size: 14px;
+  font-weight: 500;
+}
+.staff h3 {
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+.staffContent {
+  width: 100%;
+  height: 74px;
+  background-color: var(--Black08);
+  border: 1px solid var(--Black15);
+  border-radius: 8px;
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+}
+.staffContent img {
+  width: 47px;
+  height: 50px;
+}
+.staffText p:nth-child(1) {
+  color: var(--White);
+  font-size: 16px;
+  font-weight: 500;
+}
+.staffText p:nth-child(2) {
+  color: var(--Grey60);
+  font-size: 14px;
+  font-weight: 500;
+}
