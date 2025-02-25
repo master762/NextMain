@@ -2,38 +2,11 @@ import React from "react";
 import styles from "@/styles/Test.module.css";
 import CastSlider from "@/components/CastSlider";
 import Reviews from "@/components/Reviews";
+import FilmCover from "./FilmCover";
 export default function test() {
   return (
     <div className="container">
-      <div
-        className={styles.slider}
-        style={{ backgroundImage: `url(/img/slide3.png)` }}
-      >
-        <div className={styles.text}>
-          <h2>Kantara</h2>
-          <p>
-            With the help of remaining allies, the Avengers must assemble once
-            more in order to undo Thanos's actions and undo the chaos to the
-            universe, no matter what consequences may be in store, and no matter
-            who they face... Avenge the fallen.
-          </p>
-        </div>
-        <div className={styles.buttonContainer}>
-          <button>
-            <img src="/img/IconPlay.png" alt="Play Icon" />
-            <span className={styles.span}>Play Now</span>
-          </button>
-          <button>
-            <span>+</span>
-          </button>
-          <button>
-            <img src="/img/Like.png" alt="Button 2" />
-          </button>
-          <button>
-            <img src="/img/Volume.png" alt="Button 3" />
-          </button>
-        </div>
-      </div>
+      <FilmCover />
       <div className={styles.other}>
         <div className={styles.left}>
           <div className={styles.description}>
