@@ -8,6 +8,8 @@ const manrope = Manrope({
 export default function RootLayout({ children }) {
   return (
     <html lang="ru">
+      <title>StreamVibe</title>
+      <link rel="icon" href="/logo.svg" />
       <body>
         <main>{children}</main>
       </body>
