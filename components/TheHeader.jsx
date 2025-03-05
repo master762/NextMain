@@ -1,7 +1,5 @@
-"use client";
-
 import styles from "@/styles/TheHeader.module.css";
-import Link from "next/link";
+import HeaderInner from "./HeaderInner";
 
 export default function TheHeader({ showTextContent, showBgImage }) {
   return (
@@ -9,30 +7,8 @@ export default function TheHeader({ showTextContent, showBgImage }) {
       {showBgImage ? (
         <div className={styles.bgimage}>
           <div className="container">
-            <div className={styles.contentContainer}>
-              <div className={styles.logo}>
-                <Link href="/" scroll={false}>
-                  <img src="/img/Logo.png" alt="StreamVibe Logo" />
-                </Link>
-              </div>
-              <nav>
-                <ul className={styles.navigation}>
-                  <Link href="/" scroll={false}>
-                    <li>Home</li>
-                  </Link>
-                  <Link href="/Film">
-                    <li>Movies & Shows</li>
-                  </Link>
-                  <li>Support</li>
-                  <li>Subscriptions</li>
-                </ul>
-              </nav>
-              <div className={styles.icons}>
-                <img src="/img/search.png" alt="Search" />
-                <img src="/img/notifica.png" alt="Notifications" />
-              </div>
-            </div>
-            {/* только на первой странице */}
+            <HeaderInner />
+            {/* Только на первой странице */}
             {showTextContent && (
               <>
                 <div className={styles.play}>
@@ -63,29 +39,7 @@ export default function TheHeader({ showTextContent, showBgImage }) {
         </div>
       ) : (
         <div className="container">
-          <div className={styles.contentContainer}>
-            <div className={styles.logo}>
-              <Link href="/" scroll={false}>
-                <img src="/img/Logo.png" alt="StreamVibe Logo" />
-              </Link>
-            </div>
-            <nav>
-              <ul className={styles.navigation}>
-                <Link href="/" scroll={false}>
-                  <li>Home</li>
-                </Link>
-                <Link href="/Film">
-                  <li>Movies & Shows</li>
-                </Link>
-                <li>Support</li>
-                <li>Subscriptions</li>
-              </ul>
-            </nav>
-            <div className={styles.icons}>
-              <img src="/img/search.png" alt="Search" />
-              <img src="/img/notifica.png" alt="Notifications" />
-            </div>
-          </div>
+          <HeaderInner />
         </div>
       )}
     </header>

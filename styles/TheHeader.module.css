@@ -36,6 +36,14 @@
   align-items: center;
   gap: 30px;
 }
+.icons button {
+  color: var(--Grey75);
+  height: 100%;
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px solid var(--Black12);
+  background-color: var(--Black06);
+}
 
 .play button {
   background-color: transparent;

@@ -7,7 +7,6 @@ export default function FilmCover() {
   const [quality, setQuality] = useState("1080p");
   const videoRef = useRef(null);
 
-  // Оставлены только 1080p, 720p и 480p
   const videoSources = {
     "1080p": "/video/video1080p.mp4",
     "720p": "/video/video720p.mp4",
