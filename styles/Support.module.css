@@ -1,7 +1,7 @@
 .content {
   display: flex;
   justify-content: space-between;
-  min-height: 739px;
+  margin-bottom: 150px;
 }
 .ui {
   max-width: 533px;

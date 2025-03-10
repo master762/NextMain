@@ -5,6 +5,16 @@
   border: 1px solid var(--Black15);
   border-radius: 12px;
   margin-bottom: 30px;
+  transition: 0.3s;
+}
+.cast:hover {
+  transform: scale(1.02);
+  background: linear-gradient(
+    208deg,
+    rgba(255, 0, 0, 0.1) 0%,
+    rgba(255, 0, 0, 0) 40%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 .DescriptionContainer {
   max-width: 957px;
@@ -43,8 +53,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.3s;
 }
-
+.arrows button:hover {
+  background-color: var(--Black20);
+}
+.arrows button:active {
+  transform: scale(1.2);
+}
 .sliderContainer {
   overflow: hidden;
   width: 100%;
@@ -55,7 +71,12 @@
   width: 102px;
   height: 109px;
   border-radius: 12px;
+  transition: 0.3s;
 }
+.sliderContainer img:hover {
+  opacity: 0.5;
+}
+
 .slider {
   display: flex;
   gap: 20px;

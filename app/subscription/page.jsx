@@ -1,14 +1,14 @@
+import Price from "@/components/Price";
 import React from "react";
 import TheFooter from "@/components/TheFooter";
 import TheHeader from "@/components/TheHeader";
-import Support from "@/components/Support";
-import Questions from "@/components/Questions";
-export default function SupportPage() {
+import PriceTable from "@/components/PriceTable";
+export default function page() {
   return (
     <>
       <TheHeader showTextContent={false} showBgImage={false} />
-      <Support />
-      <Questions />
+      <Price />
+      <PriceTable />
       <TheFooter />
     </>
   );

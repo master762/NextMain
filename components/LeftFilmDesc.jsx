@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "@/styles/Test.module.css";
+import styles from "@/styles/LeftFilmDesc.module.css";
 import CastSlider from "@/components/CastSlider";
 import Reviews from "@/components/Reviews";
 import FilmCover from "./FilmCover";

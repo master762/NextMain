@@ -1,0 +1,67 @@
+.title h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--White);
+  margin-bottom: 14px;
+}
+.title p {
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--Grey60);
+}
+.title {
+  margin-bottom: 80px;
+}
+
+.table_row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  color: var(--Grey60);
+}
+
+.table_row:first-child div {
+  border-top: 1px solid var(--Black15);
+  background-color: var(--Black06);
+  color: var(--White);
+}
+.radiusTop:first-child {
+  border-top-left-radius: 12px;
+}
+.radiusTop:last-child {
+  border-top-right-radius: 12px;
+}
+.radiusBottom:first-child {
+  border-bottom-left-radius: 12px;
+}
+.radiusBottom:last-child {
+  border-bottom-right-radius: 12px;
+}
+.table_row div {
+  border-right: 1px solid var(--Black15);
+  border-bottom: 1px solid var(--Black15);
+  display: flex;
+  padding: 30px;
+  align-items: center;
+  transition: 0.3s;
+}
+.table_row div:hover {
+  background-color: var(--Black06);
+  color: var(--White);
+}
+
+.table_row div:first-child {
+  border-left: 1px solid var(--Black15);
+}
+
+.table_row div span {
+  background-color: var(--Red45);
+  color: var(--White);
+  height: 22px;
+  width: 71px;
+  margin-left: 8px;
+  text-align: center;
+  border-radius: 2px;
+}
+.table {
+  margin-bottom: 150px;
+}

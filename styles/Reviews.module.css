@@ -20,6 +20,16 @@
   border: 1px solid var(--Black15);
   border-radius: 12px;
   height: 555px;
+  transition: 0.3s;
+}
+.Reviews:hover {
+  transform: scale(1.02);
+  background: linear-gradient(
+    208deg,
+    rgba(255, 0, 0, 0.1) 0%,
+    rgba(255, 0, 0, 0) 40%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 .flex {
   display: flex;

@@ -5,7 +5,6 @@
 }
 .left {
   min-width: 1057px;
-  width: 100%;
 }
 
 .description {
@@ -13,7 +12,18 @@
   background-color: var(--Black10);
   border: 1px solid var(--Black15);
   border-radius: 12px;
+  transition: 0.3s;
 }
+.description:hover {
+  transform: scale(1.02);
+  background: linear-gradient(
+    208deg,
+    rgba(255, 0, 0, 0.1) 0%,
+    rgba(255, 0, 0, 0) 40%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
 .DescriptionContainer {
   max-width: 957px;
   margin: 0 auto;
@@ -42,6 +52,16 @@
   border-radius: 12px;
   padding-bottom: 50px;
   padding-top: 50px;
+  transition: 0.3s;
+}
+.right:hover {
+  transform: scale(1.02);
+  background: linear-gradient(
+    208deg,
+    rgba(255, 0, 0, 0.1) 0%,
+    rgba(255, 0, 0, 0) 40%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 .rightContainer {
   max-width: 419px;
@@ -83,6 +103,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.3s;
+  user-select: none;
+}
+.languages div:hover {
+  transform: scale(1.1);
 }
 .languages div p {
   font-size: 18;
@@ -107,6 +132,10 @@
   max-width: 199px;
   width: 100%;
   height: 96px;
+  transition: 0.3s;
+}
+.card:hover {
+  transform: scale(1.08);
 }
 .stars {
   display: flex;
@@ -151,6 +180,11 @@
   border: 1px solid var(--Black15);
   border-radius: 6px;
   padding: 6px 12px;
+  transition: 0.3s;
+}
+.genres div:hover {
+  transform: scale(1.08);
+  user-select: none;
 }
 .genres div p {
   font-size: 14px;
@@ -169,6 +203,10 @@
   display: flex;
   gap: 8px;
   padding: 12px;
+  transition: 0.3s;
+}
+.staffContent:hover {
+  transform: scale(1.03);
 }
 .staffContent img {
   width: 47px;

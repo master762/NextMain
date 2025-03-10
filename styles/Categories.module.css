@@ -39,6 +39,9 @@
   border: 1px solid;
   border-color: var(--Black12);
 }
+.btn:hover {
+  background-color: var(--Black20);
+}
 .indicators {
   display: flex;
   align-items: center;

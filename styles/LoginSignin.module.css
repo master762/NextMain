@@ -1,0 +1,124 @@
+.title {
+  margin-top: 50px;
+  text-align: center;
+  color: var(--White);
+  font-size: 60px;
+  font-weight: 700;
+}
+.button,
+.back {
+  width: 130px;
+  height: 45px;
+  background-color: var(--Red45);
+  border-radius: 10px;
+  color: var(--White);
+  border: 1px solid var(--Black15);
+  font-size: 18px;
+  z-index: 1;
+}
+.back {
+  position: fixed;
+  top: 10;
+  left: 10;
+}
+.form {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  max-width: 500px;
+  margin: 60 auto;
+  background-color: var(--Black06);
+  border-radius: 20px;
+  border: 1px solid var(--Black15);
+  place-content: center;
+  place-items: center;
+  overflow: hidden;
+  position: relative;
+}
+.form::before {
+  content: "";
+  position: absolute;
+  width: 120px;
+  background-image: linear-gradient(
+    180deg,
+    rgb(0, 183, 255),
+    rgb(255, 48, 255)
+  );
+  height: 140%;
+  animation: rotBGimg 5s linear infinite;
+  transition: all 0.2s linear;
+}
+@keyframes rotBGimg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+.form::after {
+  content: "";
+  position: absolute;
+  background: var(--Black06);
+  inset: 5px;
+  border-radius: 15px;
+}
+.form input {
+  height: 45px;
+  border-radius: 12px;
+  transition: 0.3s;
+  outline: none;
+  padding-left: 10px;
+  width: 80%;
+  z-index: 1;
+}
+.form input::placeholder {
+  font-style: italic;
+}
+.form input:focus {
+  border: 1px solid var(--Red45);
+  width: 82%;
+}
+.label {
+  display: flex;
+  justify-content: center;
+  color: var(--White);
+  font-size: 15px;
+  font-weight: 500;
+  z-index: 1;
+}
+.label span {
+  color: var(--White);
+  margin-right: 20px;
+}
+.label select {
+  outline: none;
+  background-color: transparent;
+  border: none;
+  color: var(--White);
+  font-size: 15px;
+  font-weight: 500;
+}
+.label select option {
+  color: black;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+.desc {
+  display: flex;
+  gap: 5px;
+  color: var(--White);
+  z-index: 1;
+}
+.desc span {
+  color: var(--White);
+  font-weight: bold;
+  font-style: italic;
+}
