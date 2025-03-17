@@ -82,8 +82,6 @@ export default function Reviews() {
               className={styles.comment}
               style={{
                 transform: `translateX(-${index * 100}%)`,
-                transition: "transform 0.5s ease-in-out",
-                minWidth: "100%",
               }}
             >
               <div className={styles.commentContainer}>

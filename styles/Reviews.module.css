@@ -58,6 +58,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: "transform 0.5s ease-in-out";
+  min-width: "100%";
 }
 .comment {
   background-color: var(--Black06);

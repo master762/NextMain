@@ -51,6 +51,9 @@ export default function HeaderInner() {
         </div>
 
         <img src="/img/notifica.png" alt="Notifications" />
+        <Link className={styles.account} href="/profile">
+          <img src="/img/profile.png" alt="profile" />
+        </Link>
         <Link href="/login">
           <button>
             <span>log in</span>

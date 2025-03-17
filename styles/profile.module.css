@@ -1,0 +1,135 @@
+.profileCard {
+  width: 20vw;
+  height: 50vh;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #212121 0%, #000000 100%);
+  background-size: 200%;
+  animation: gradient 10s linear infinite;
+  box-shadow: 15px 15px 30px rgb(25, 25, 25), -15px -15px 30px rgb(60, 60, 60);
+  transition: 0.3s;
+}
+.profileCard:hover {
+  transform: translateY(-10px);
+}
+
+.Cardcontainer {
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
+}
+.profileImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.userImg {
+  margin-top: 30px;
+  transition: 0.3s;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+.titleDrug {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: var(--White);
+}
+.hoverTitle {
+  display: none;
+  position: absolute;
+  border-radius: 10px;
+  max-width: 50%;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--White);
+  pointer-events: none;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.userImg:hover .hoverTitle {
+  display: block;
+}
+.titleDrug.dragging {
+  display: block;
+  position: absolute;
+  width: 70%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.userImg img {
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  object-fit: cover;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.userImg.dragging {
+  background: blue;
+}
+
+.userImg.dragging img {
+  opacity: 0.3;
+}
+
+.attributes {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin: 20px auto;
+}
+.attributes p {
+  font-size: 23px;
+  color: var(--Grey60);
+}
+.attributes span {
+  color: var(--White);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.buttonContainer button {
+  background-color: rgb(64, 103, 219);
+  color: white;
+  padding: 0.7em 1em;
+  padding-left: 0.9em;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  border: 1px solid var(--black15);
+  border-radius: 16px;
+}
+
+.buttonContainer img {
+  width: 24px;
+  height: 24px;
+}
+
+.title {
+  color: var(--White);
+  font-size: 38px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.inputField {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+}

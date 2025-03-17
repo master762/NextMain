@@ -84,7 +84,9 @@ export default function Questions() {
                     </span>
                   </div>
                   {openIndex === col * 4 + index && (
-                    <div className={styles.answer}>{item.answer}</div>
+                    <div className={`${styles.answer} ${styles.open}`}>
+                      {item.answer}
+                    </div>
                   )}
                 </div>
               ))}
