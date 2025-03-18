@@ -1,10 +1,10 @@
 import React from "react";
-import Profile from "@/app/profile/Profile";
-
+import AddFilm from "@/app/admin/AddFilm";
 export default function page() {
   return (
     <>
-      <Profile />
+      <h1>админка</h1>
+      <AddFilm />
     </>
   );
 }

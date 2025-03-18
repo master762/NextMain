@@ -3,7 +3,7 @@ import styles from "@/styles/LeftFilmDesc.module.css";
 import CastSlider from "@/components/CastSlider";
 import Reviews from "@/components/Reviews";
 import FilmCover from "./FilmCover";
-export default function test() {
+export default function LeftFilmDesc() {
   return (
     <div className="container">
       <FilmCover />

@@ -36,8 +36,72 @@ model Release {
 // пользователь
 model User {
   id       String @id @default(uuid())
-  login    String @unique
+  role     String @default("user")
   nickname String
-  country  String
+  email    String @unique
   password String
+  age      Int
+  country  String
+  image    String @default("/userAvatars/defaultAvatar.png")
+}
+
+// фильмы
+model Film {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique
+  description String
+  video480p   String?
+  video720p   String?
+  video1080p  String?
+  releaseYear Int?
+  languageId  Int?
+  directorId  Int?
+  musicId     Int?
+  cover       String?
+
+  language Language? @relation(fields: [languageId], references: [id])
+  director Director? @relation(fields: [directorId], references: [id])
+  music    Music?    @relation(fields: [musicId], references: [id])
+  genres   Genre[]   @relation("FilmGenres")
+  cast     Cast[]    @relation("FilmCast")
+  reviews  Review[]
+}
+
+model Cast {
+  id    Int     @id @default(autoincrement())
+  name  String
+  image String?
+  films Film[]  @relation("FilmCast")
+}
+
+model Review {
+  id     Int    @id @default(autoincrement())
+  rating Int
+  text   String
+  filmId Int
+  film   Film   @relation(fields: [filmId], references: [id])
+}
+
+model Language {
+  id       Int    @id @default(autoincrement())
+  language String @unique
+  films    Film[]
+}
+
+model Genre {
+  id    Int    @id @default(autoincrement())
+  genre String @unique
+  films Film[] @relation("FilmGenres")
+}
+
+model Director {
+  id    Int    @id @default(autoincrement())
+  name  String
+  films Film[]
+}
+
+model Music {
+  id       Int    @id @default(autoincrement())
+  composer String
+  films    Film[]
 }
