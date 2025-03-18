@@ -19,16 +19,14 @@ export async function registerUser({
   }
 
   try {
-    // Проверяем, существует ли email
+    // проверка, есть ли такой емейл
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
-      return { status: "Email already exists" };
+      return { status: "Почта уже существует" };
     }
 
-    // Хешируем пароль
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Создаём пользователя
     const newUser = await prisma.user.create({
       data: {
         nickname,
@@ -39,49 +37,49 @@ export async function registerUser({
       },
     });
 
-    // Генерируем токен
+    // jwt токен, создание
     const token = jwt.sign(
       { id: newUser.id, email: newUser.email },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
-    return { status: "Success", token }; // Отправляем токен клиенту
+    return { status: "Success", token }; //  отправка токена
   } catch (error) {
     console.error("Registration error:", error);
     return { status: "Error during registration" };
   }
 }
 
-// Авторизация пользователя
+// авторизация, не работает
 export async function loginUser({ email, password }) {
   if (!email || !password) {
     return { status: "All fields are required" };
   }
 
   try {
-    // Находим пользователя по email
+    // пользовтель устанавливается по email
     const user = await prisma.user.findUnique({ where: { email } });
 
     if (!user) {
       return { status: "Invalid email or password" };
     }
 
-    // Проверяем правильность пароля
+    // сравнение хэшированных паролей
     const passwordMatch = await bcrypt.compare(password, user.password);
 
     if (!passwordMatch) {
       return { status: "Invalid email or password" };
     }
 
-    // Генерация токена для авторизованного пользователя
+    // генерация токена для авторизованного пользователя
     const token = jwt.sign(
       { userId: user.id, email: user.email },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
-    return { status: "Success", token }; // Возвращаем токен
+    return { status: "Success", token }; // возврат токена
   } catch (error) {
     console.error("Login error:", error);
     return { status: "Error during login" };
