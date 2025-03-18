@@ -1,23 +1,65 @@
-import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
 export async function POST(req) {
   try {
-    const { description } = await req.json();
+    const body = await req.json();
 
-    const newFilm = await prisma.film.create({
+    console.log("Received data:", body); // Логирование данных
+
+    const {
+      title,
+      description,
+      cover,
+      releaseYear,
+      genres,
+      languages,
+      videos,
+    } = body;
+
+    // Преобразование releaseYear в целое число
+    const releaseYearInt = parseInt(releaseYear, 10);
+
+    if (isNaN(releaseYearInt)) {
+      throw new Error("Invalid releaseYear, must be a number");
+    }
+
+    // Преобразуем URL видео на пустую строку вместо null, если URL отсутствует
+    const formattedVideos = videos.map((video) => ({
+      quality: video.quality,
+      url: video.url || "", // Если URL пустой, заменяем его на пустую строку
+    }));
+
+    // Создание фильма в базе данных
+    const movie = await prisma.movie.create({
       data: {
-        name: "New Movie",
+        title,
         description,
+        cover,
+        releaseYear: releaseYearInt, // передаем как число
+        genres: {
+          connect: genres.map((genre) => ({ name: genre })), // подключаем жанры по имени
+        },
+        languages: {
+          connect: languages.map((language) => ({ name: language })), // подключаем языки по имени
+        },
+        videos: {
+          create: formattedVideos, // передаем форматированные видео
+        },
       },
     });
 
-    return NextResponse.json({ success: true, film: newFilm });
+    return NextResponse.json(movie);
   } catch (error) {
+    console.error(
+      "Error creating movie:",
+      error instanceof Error ? error.message : error
+    );
+
     return NextResponse.json(
-      { success: false, error: error.message },
+      { error: "Failed to create movie" },
       { status: 500 }
     );
   }

@@ -199,6 +199,7 @@ export default function AddFilm() {
                 placeholder="Add genre"
               />
             </div>
+
             <button className={styles.save}>
               <span>publish</span>
             </button>
