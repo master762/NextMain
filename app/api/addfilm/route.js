@@ -3,61 +3,52 @@ import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-export async function POST(req) {
+export async function POST(request) {
   try {
-    const body = await req.json();
+    const body = await request.json(); // Получаем тело запроса
 
-    console.log("Received data:", body); // Логирование данных
-
-    const {
-      title,
-      description,
-      cover,
-      releaseYear,
-      genres,
-      languages,
-      videos,
-    } = body;
-
-    // Преобразование releaseYear в целое число
-    const releaseYearInt = parseInt(releaseYear, 10);
-
-    if (isNaN(releaseYearInt)) {
-      throw new Error("Invalid releaseYear, must be a number");
+    // Проверка на обязательные данные
+    if (
+      !body.description ||
+      !body.cover ||
+      !body.releaseYear ||
+      !body.languages ||
+      !body.genres ||
+      !body.videos["720p"]
+    ) {
+      return NextResponse.json(
+        { error: "Missing required data" },
+        { status: 400 }
+      );
     }
 
-    // Преобразуем URL видео на пустую строку вместо null, если URL отсутствует
-    const formattedVideos = videos.map((video) => ({
-      quality: video.quality,
-      url: video.url || "", // Если URL пустой, заменяем его на пустую строку
-    }));
+    const { description, cover, releaseYear, languages, genres, videos } = body;
 
-    // Создание фильма в базе данных
+    // Сохраняем фильм в базе данных через Prisma
     const movie = await prisma.movie.create({
       data: {
-        title,
         description,
         cover,
-        releaseYear: releaseYearInt, // передаем как число
-        genres: {
-          connect: genres.map((genre) => ({ name: genre })), // подключаем жанры по имени
-        },
+        releaseYear,
         languages: {
-          connect: languages.map((language) => ({ name: language })), // подключаем языки по имени
+          connect: languages.map((lang) => ({ name: lang })),
+        },
+        genres: {
+          connect: genres.map((genre) => ({ name: genre })),
         },
         videos: {
-          create: formattedVideos, // передаем форматированные видео
+          create: [
+            { quality: "720p", url: videos["720p"] },
+            { quality: "1080p", url: videos["1080p"] },
+            { quality: "480p", url: videos["480p"] },
+          ],
         },
       },
     });
 
     return NextResponse.json(movie);
   } catch (error) {
-    console.error(
-      "Error creating movie:",
-      error instanceof Error ? error.message : error
-    );
-
+    console.error("Error creating movie:", error);
     return NextResponse.json(
       { error: "Failed to create movie" },
       { status: 500 }

@@ -43,6 +43,37 @@ export default function AddFilm() {
     setItems(updatedItems);
   };
 
+  const handleSubmit = async () => {
+    // Подготовка данных для отправки
+    const movieData = {
+      description,
+      cover,
+      releaseYear,
+      genres,
+      languages,
+      videos,
+    };
+
+    try {
+      const response = await fetch("/api/addfilm", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(movieData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to submit movie");
+      }
+
+      const data = await response.json();
+      console.log("Movie added:", data); // Выводим добавленный фильм
+    } catch (error) {
+      console.error("Error submitting movie:", error);
+    }
+  };
+
   return (
     <>
       <div className="container">
@@ -200,7 +231,7 @@ export default function AddFilm() {
               />
             </div>
 
-            <button className={styles.save}>
+            <button className={styles.save} onClick={handleSubmit}>
               <span>publish</span>
             </button>
           </div>
