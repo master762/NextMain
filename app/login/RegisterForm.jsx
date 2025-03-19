@@ -2,12 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import styles from "@/styles/LoginSignin.module.css";
 import { registerUser } from "@/serverActions";
 
 export default function RegisterForm() {
   const [message, setMessage] = useState("");
   const [pending, setPending] = useState(false);
+  const router = useRouter(); // Используем useRouter для переадресации
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -24,7 +27,19 @@ export default function RegisterForm() {
         country: formData.get("country"),
       });
 
-      setMessage(result.status);
+      if (result.status === "Success") {
+        // Выполняем автоматический вход
+        await signIn("credentials", {
+          email: formData.get("email"),
+          password: formData.get("password"),
+          redirect: false,
+        });
+
+        // Переадресация на главную страницу
+        router.push("/");
+      } else {
+        setMessage(result.status);
+      }
     } catch (error) {
       setMessage("Error during registration");
     } finally {

@@ -19,7 +19,7 @@ export async function registerUser({
   }
 
   try {
-    // проверка, есть ли такой емейл
+    // Проверяем, существует ли уже пользователь с таким email
     const existingUser = await prisma.user.findUnique({ where: { email } });
     if (existingUser) {
       return { status: "Почта уже существует" };
@@ -28,60 +28,12 @@ export async function registerUser({
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await prisma.user.create({
-      data: {
-        nickname,
-        email,
-        password: hashedPassword,
-        age,
-        country,
-      },
+      data: { nickname, email, password: hashedPassword, age, country },
     });
 
-    // jwt токен, создание
-    const token = jwt.sign(
-      { id: newUser.id, email: newUser.email },
-      process.env.JWT_SECRET,
-      { expiresIn: "1h" }
-    );
-
-    return { status: "Success", token }; //  отправка токена
+    return { status: "Success" };
   } catch (error) {
     console.error("Registration error:", error);
     return { status: "Error during registration" };
-  }
-}
-
-// авторизация, не работает
-export async function loginUser({ email, password }) {
-  if (!email || !password) {
-    return { status: "All fields are required" };
-  }
-
-  try {
-    // пользовтель устанавливается по email
-    const user = await prisma.user.findUnique({ where: { email } });
-
-    if (!user) {
-      return { status: "Invalid email or password" };
-    }
-
-    // сравнение хэшированных паролей
-    const passwordMatch = await bcrypt.compare(password, user.password);
-
-    if (!passwordMatch) {
-      return { status: "Invalid email or password" };
-    }
-
-    // генерация токена для авторизованного пользователя
-    const token = jwt.sign(
-      { userId: user.id, email: user.email },
-      process.env.JWT_SECRET,
-      { expiresIn: "1h" }
-    );
-
-    return { status: "Success", token }; // возврат токена
-  } catch (error) {
-    console.error("Login error:", error);
-    return { status: "Error during login" };
   }
 }

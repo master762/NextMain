@@ -42,7 +42,7 @@ model User {
   password String
   age      Int
   country  String
-  image    String @default("/userAvatars/defaultAvatar.png")
+  image    String @default("/userAvatars/defultAvatar.png")
 }
 
 // фильмы

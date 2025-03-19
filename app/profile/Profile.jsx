@@ -1,32 +1,72 @@
 "use client";
-
-import React, { useState } from "react";
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import styles from "@/styles/profile.module.css";
 
 export default function Profile() {
+  const { data: session, update } = useSession();
   const [isEditing, setIsEditing] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
-  const [avatar, setAvatar] = useState("/defultAvatar.png");
+  const [avatar, setAvatar] = useState("/userAvatars/defaultAvatar.png");
   const [profileData, setProfileData] = useState({
-    username: "Alexey",
-    email: "example@gmail.com",
-    age: "32",
-    country: "USA",
+    nickname: "",
+    email: "",
+    age: "",
+    country: "",
   });
 
+  useEffect(() => {
+    if (session) {
+      fetch(`/api/getProfile?email=${session.user.email}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setProfileData({
+            nickname: data.nickname,
+            email: data.email,
+            age: data.age.toString(),
+            country: data.country,
+          });
+          setAvatar(data.image);
+        });
+    }
+  }, [session]);
+
   const handleChange = (e) => {
-    setProfileData({ ...profileData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setProfileData((prev) => ({
+      ...prev,
+      [name]: name === "age" ? parseInt(value, 10) || "" : value,
+    }));
   };
 
-  const handleSave = () => {
-    setIsEditing(false);
+  const handleSave = async () => {
+    const response = await fetch("/api/updateProfile", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(profileData),
+    });
+
+    if (response.ok) {
+      setIsEditing(false);
+    }
   };
 
-  const handleImageUpload = (file) => {
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => setAvatar(e.target.result);
-      reader.readAsDataURL(file);
+  const handleImageUpload = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("email", session.user.email);
+
+    const response = await fetch("/api/uploadAvatar", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+    if (data.imageUrl) {
+      setAvatar(data.imageUrl);
+      setProfileData((prev) => ({ ...prev, image: data.imageUrl }));
+      window.location.reload();
     }
   };
 
@@ -46,115 +86,116 @@ export default function Profile() {
     handleImageUpload(file);
   };
 
+  //поведение,если не сессия (не авторизован либо истек токен)
+  if (!session)
+    return (
+      <>
+        <div className="container">
+          <div className={styles.sessionFalse}>
+            <h2>
+              Please
+              <Link href="/signin">
+                <span>sign in</span>
+              </Link>
+            </h2>
+          </div>
+        </div>
+      </>
+    );
+  // основная стилизация
   return (
-    <div className="container">
-      <h2 className={styles.title}>Your Profile</h2>
-      <div className={styles.Cardcontainer}>
-        <div className={styles.profileCard}>
-          <div className={styles.profileImage}>
-            <div
-              className={`${styles.userImg} ${
-                isDragging ? styles.dragging : ""
-              }`}
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-            >
-              <p className={styles.hoverTitle}>Upload photo</p>
-              <p
-                className={`${styles.titleDrug} ${
+    <>
+      <Link href="/">
+        <button className={styles.back}>
+          <span>Back</span>
+        </button>
+      </Link>
+
+      <div className="container">
+        <h2 className={styles.title}>Your Profile</h2>
+        <div className={styles.Cardcontainer}>
+          <div className={styles.profileCard}>
+            <div className={styles.profileImage}>
+              <div
+                className={`${styles.userImg} ${
                   isDragging ? styles.dragging : ""
                 }`}
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
               >
-                pull it here!
-              </p>
-              <label htmlFor="fileUpload">
-                <img src={avatar} alt="user img" />
-              </label>
-              <input
-                id="fileUpload"
-                type="file"
-                accept="image/*"
-                style={{ display: "none" }}
-                onChange={(e) => handleImageUpload(e.target.files[0])}
-              />
+                <p className={styles.hoverTitle}>Upload photo</p>
+                <p className={styles.titleDrug}>Pull it here!</p>
+                <label htmlFor="fileUpload">
+                  <img src={avatar} alt="user img" />
+                </label>
+                <input
+                  id="fileUpload"
+                  type="file"
+                  accept="image/*"
+                  style={{ display: "none" }}
+                  onChange={(e) => handleImageUpload(e.target.files[0])}
+                />
+              </div>
             </div>
-          </div>
-          <div className={styles.attributes}>
-            <p>
-              User name:{" "}
-              {isEditing ? (
-                <input
-                  type="text"
-                  name="username"
-                  value={profileData.username}
-                  onChange={handleChange}
-                  className={styles.inputField}
-                />
-              ) : (
-                <span>{profileData.username}</span>
-              )}
-            </p>
-            <p>
-              Email:{" "}
-              {isEditing ? (
-                <input
-                  type="email"
-                  name="email"
-                  value={profileData.email}
-                  onChange={handleChange}
-                  className={styles.inputField}
-                />
-              ) : (
-                <span>{profileData.email}</span>
-              )}
-            </p>
-            <p>
-              Age:{" "}
-              {isEditing ? (
-                <input
-                  type="text"
-                  name="age"
-                  value={profileData.age}
-                  onChange={handleChange}
-                  className={styles.inputField}
-                />
-              ) : (
-                <span>{profileData.age}</span>
-              )}
-            </p>
-            <p>
-              Country:{" "}
-              {isEditing ? (
-                <input
-                  type="text"
-                  name="country"
-                  value={profileData.country}
-                  onChange={handleChange}
-                  className={styles.inputField}
-                />
-              ) : (
-                <span>{profileData.country}</span>
-              )}
-            </p>
-          </div>
-          <div className={styles.buttonContainer}>
-            <button>
-              <img src="/img/logOut.png" alt="" />
-              <span>Log out</span>
-            </button>
-            <button
-              onClick={() => (isEditing ? handleSave() : setIsEditing(true))}
-            >
-              <img src="/img/edit.png" alt="" />
-              <span>{isEditing ? "Save Profile" : "Edit Profile"}</span>
-            </button>
+            <div className={styles.attributes}>
+              <p>
+                User name:{" "}
+                {isEditing ? (
+                  <input
+                    type="text"
+                    name="nickname"
+                    value={profileData.nickname}
+                    onChange={handleChange}
+                    className={styles.inputField}
+                  />
+                ) : (
+                  <span>{profileData.nickname}</span>
+                )}
+              </p>
+              <p>
+                Email: <span>{profileData.email}</span>
+              </p>
+              <p>
+                Age:{" "}
+                {isEditing ? (
+                  <input
+                    type="number"
+                    name="age"
+                    value={profileData.age}
+                    onChange={handleChange}
+                    className={styles.inputField}
+                  />
+                ) : (
+                  <span>{profileData.age}</span>
+                )}
+              </p>
+              <p>
+                Country:{" "}
+                {isEditing ? (
+                  <input
+                    type="text"
+                    name="country"
+                    value={profileData.country}
+                    onChange={handleChange}
+                    className={styles.inputField}
+                  />
+                ) : (
+                  <span>{profileData.country}</span>
+                )}
+              </p>
+            </div>
+            <div className={styles.buttonContainer}>
+              <button
+                onClick={() => (isEditing ? handleSave() : setIsEditing(true))}
+              >
+                <img src="/img/edit.png" alt="" />
+                <span>{isEditing ? "Save Profile" : "Edit Profile"}</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
