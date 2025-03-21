@@ -1,9 +1,7 @@
-// utils/translitiration.js
-
 export function transliterate(text) {
   return text.replace(
     /([а-яё])|([\s_-])|([^a-z\d])/gi,
-    function (all, ch, space, words) {
+    function (all, ch, space, words, i) {
       if (space || words) {
         return space ? "-" : "";
       }
@@ -52,9 +50,4 @@ export function transliterate(text) {
       return t[index];
     }
   );
-}
-
-export function generateSlug(title, releaseYear) {
-  const slugifiedTitle = transliterate(title).toLowerCase();
-  return `${slugifiedTitle}-${releaseYear}`;
 }

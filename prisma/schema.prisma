@@ -57,6 +57,16 @@ model User {
   image    String @default("/userAvatars/defultAvatar.png")
 }
 
+model Film {
+  id          Int    @id @default(autoincrement())
+  title       String
+  description String
+  releaseYear Int
+  slug        String @unique
+  cover       String
+  video       String
+}
+
 // фильмы
 model Movie {
   id          Int        @id @default(autoincrement())

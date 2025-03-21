@@ -1,242 +1,131 @@
 "use client";
 import { useState } from "react";
-import styles from "@/styles/AddFilm.module.css";
 
 export default function AddFilm() {
-  const [description, setDescription] = useState("no description");
-  const [isEditing, setIsEditing] = useState(false);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [releaseYear, setReleaseYear] = useState("");
   const [cover, setCover] = useState(null);
-  const [releaseYear, setReleaseYear] = useState("2022");
-  const [languages, setLanguages] = useState(["English"]);
-  const [genres, setGenres] = useState(["Action"]);
-  const [videos, setVideos] = useState({
-    "1080p": null,
-    "720p": null,
-    "480p": null,
-  });
+  const [video, setVideo] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const [newLanguage, setNewLanguage] = useState("");
-  const [newGenre, setNewGenre] = useState("");
+  const handleFileUpload = async (file) => {
+    const formData = new FormData();
+    formData.append("file", file);
 
-  const handleChange = () => setIsEditing(true);
-  const handleSave = () => setIsEditing(false);
+    const response = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
 
-  const handleFileChange = (event, setFile) => {
-    const file = event.target.files[0];
-    if (file) {
-      const fileUrl = URL.createObjectURL(file);
-      setFile(fileUrl);
+    if (!response.ok) {
+      throw new Error("Failed to upload file");
     }
+
+    const data = await response.json();
+    return data.url;
   };
 
-  const handleDelete = (setFile) => setFile(null);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const handleAddItem = (setItems, items, value, setValue) => {
-    if (value.trim() && !items.includes(value)) {
-      setItems([...items, value]);
-      setValue(""); // Очищаем поле ввода
+    if (!title || !description || !releaseYear || !cover || !video) {
+      setErrorMessage("Please fill in all fields.");
+      return;
     }
-  };
 
-  const handleDeleteItem = (setItems, items, index) => {
-    const updatedItems = items.filter((_, i) => i !== index);
-    setItems(updatedItems);
-  };
-
-  const handleSubmit = async () => {
-    // Подготовка данных для отправки
-    const movieData = {
-      description,
-      cover,
-      releaseYear,
-      genres,
-      languages,
-      videos,
-    };
+    setIsLoading(true);
+    setErrorMessage("");
 
     try {
+      const coverUrl = await handleFileUpload(cover);
+      const videoUrl = await handleFileUpload(video);
+
       const response = await fetch("/api/addfilm", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(movieData),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title,
+          description,
+          releaseYear,
+          cover: coverUrl,
+          video: videoUrl,
+        }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to submit movie");
+        throw new Error("Failed to add film.");
       }
 
-      const data = await response.json();
-      console.log("Movie added:", data); // Выводим добавленный фильм
+      setTitle("");
+      setDescription("");
+      setReleaseYear("");
+      setCover(null);
+      setVideo(null);
+      alert("Film added successfully!");
     } catch (error) {
-      console.error("Error submitting movie:", error);
+      setErrorMessage(error.message || "An error occurred.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <>
-      <div className="container">
-        <div className={styles.MoviesTools}>
-          <div className={styles.film}>
-            {/* Превью */}
-            <div
-              className={styles.cover}
-              style={{ backgroundImage: cover ? `url(${cover})` : "none" }}
-            >
-              <p className={styles.title}>cover of the movie</p>
-              <input
-                className={styles.upload}
-                type="file"
-                accept="image/*"
-                onChange={(e) => handleFileChange(e, setCover)}
-              />
-              {cover && (
-                <button
-                  className={styles.UiButton}
-                  onClick={() => handleDelete(setCover)}
-                >
-                  <span>delete</span>
-                </button>
-              )}
-            </div>
-            {/* Описание */}
-            <div className={styles.desc}>
-              <h2 className={styles.titleDesc}>description</h2>
-              {isEditing ? (
-                <textarea
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                />
-              ) : (
-                <p>{description}</p>
-              )}
-              <button
-                className={styles.UiButton}
-                onClick={isEditing ? handleSave : handleChange}
-              >
-                <span>{isEditing ? "save" : "change"}</span>
-              </button>
-            </div>
-            {/* Видео */}
-            <div className={styles.videos}>
-              <h2>Films</h2>
-              {Object.entries(videos).map(([quality, videoUrl]) => (
-                <div className={styles.video} key={quality}>
-                  <h2>{quality}</h2>
-                  {videoUrl ? (
-                    <video
-                      className={styles.preview}
-                      src={videoUrl}
-                      controls
-                      width="100%"
-                    ></video>
-                  ) : (
-                    <input
-                      className={styles.upload}
-                      type="file"
-                      accept="video/*"
-                      onChange={(e) =>
-                        handleFileChange(e, (url) =>
-                          setVideos((prev) => ({ ...prev, [quality]: url }))
-                        )
-                      }
-                    />
-                  )}
-                  {videoUrl && (
-                    <button
-                      className={styles.UiButton}
-                      onClick={() =>
-                        setVideos((prev) => ({ ...prev, [quality]: null }))
-                      }
-                    >
-                      <span>delete</span>
-                    </button>
-                  )}
-                </div>
-              ))}
-            </div>
-            {/* Дата релиза */}
-            <div className={styles.ReleaseData}>
-              <h2>Released Year</h2>
-              <input
-                type="number"
-                value={releaseYear}
-                onChange={(e) => setReleaseYear(e.target.value)}
-                className={styles.input}
-                placeholder="Enter year"
-              />
-            </div>
-            {/* Языки */}
-            <div className={styles.languages}>
-              <h2>Languages</h2>
-              <div className={styles.container}>
-                {languages.map((lang, index) => (
-                  <div key={index} className={styles.languageItem}>
-                    <span>{lang}</span>
-                    <button
-                      className={styles.deleteButton}
-                      onClick={() =>
-                        handleDeleteItem(setLanguages, languages, index)
-                      }
-                    >
-                      Х
-                    </button>
-                  </div>
-                ))}
-              </div>
-              <input
-                type="text"
-                value={newLanguage}
-                onChange={(e) => setNewLanguage(e.target.value)}
-                onKeyDown={(e) =>
-                  e.key === "Enter" &&
-                  handleAddItem(
-                    setLanguages,
-                    languages,
-                    newLanguage,
-                    setNewLanguage
-                  )
-                }
-                className={styles.input}
-                placeholder="Add language"
-              />
-            </div>
-            {/* Жанры */}
-            <div className={styles.genres}>
-              <h2>Genres</h2>
-              <div className={styles.container}>
-                {genres.map((genre, index) => (
-                  <div key={index} className={styles.genreItem}>
-                    <p>{genre}</p>
-                    <button
-                      className={styles.deleteButton}
-                      onClick={() => handleDeleteItem(setGenres, genres, index)}
-                    >
-                      Х
-                    </button>
-                  </div>
-                ))}
-              </div>
-              <input
-                type="text"
-                value={newGenre}
-                onChange={(e) => setNewGenre(e.target.value)}
-                onKeyDown={(e) =>
-                  e.key === "Enter" &&
-                  handleAddItem(setGenres, genres, newGenre, setNewGenre)
-                }
-                className={styles.input}
-                placeholder="Add genre"
-              />
-            </div>
-
-            <button className={styles.save} onClick={handleSubmit}>
-              <span>publish</span>
-            </button>
-          </div>
+    <div>
+      <h1>Add a Film</h1>
+      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Title:</label>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
         </div>
-      </div>
-    </>
+        <div>
+          <label>Description:</label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Release Year:</label>
+          <input
+            type="number"
+            value={releaseYear}
+            onChange={(e) => setReleaseYear(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label>Cover:</label>
+          <input
+            type="file"
+            onChange={(e) => setCover(e.target.files[0])}
+            accept="image/*"
+            required
+          />
+        </div>
+        <div>
+          <label>Video:</label>
+          <input
+            type="file"
+            onChange={(e) => setVideo(e.target.files[0])}
+            accept="video/*"
+            required
+          />
+        </div>
+        <div>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Adding..." : "Add Film"}
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
