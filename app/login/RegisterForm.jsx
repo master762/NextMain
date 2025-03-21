@@ -10,7 +10,7 @@ import { registerUser } from "@/serverActions";
 export default function RegisterForm() {
   const [message, setMessage] = useState("");
   const [pending, setPending] = useState(false);
-  const router = useRouter(); // Используем useRouter для переадресации
+  const router = useRouter();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -28,14 +28,12 @@ export default function RegisterForm() {
       });
 
       if (result.status === "Success") {
-        // Выполняем автоматический вход
         await signIn("credentials", {
           email: formData.get("email"),
           password: formData.get("password"),
           redirect: false,
         });
 
-        // Переадресация на главную страницу
         router.push("/");
       } else {
         setMessage(result.status);

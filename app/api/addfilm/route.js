@@ -13,7 +13,6 @@ export async function POST(req) {
 
     const { title, description, releaseYear, cover, video } = data;
 
-    // Проверяем, что cover и video являются строками
     if (cover && typeof cover !== "string") {
       return new Response("Cover must be a string", { status: 400 });
     }
@@ -21,18 +20,16 @@ export async function POST(req) {
       return new Response("Video must be a string", { status: 400 });
     }
 
-    // Генерируем slug
     const slug = transliterate(`${title}-${releaseYear}`).toLowerCase();
 
-    // Создаем запись в базе
     const film = await prisma.film.create({
       data: {
         title,
         description,
         releaseYear: parseInt(releaseYear),
         slug,
-        cover, // строка (URL изображения)
-        video, // строка (URL видео)
+        cover,
+        video,
       },
     });
 

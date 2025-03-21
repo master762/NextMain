@@ -3,7 +3,6 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// Получение всех пользователей
 export async function GET() {
   try {
     const users = await prisma.user.findMany();
@@ -16,7 +15,6 @@ export async function GET() {
   }
 }
 
-// Обновление пользователя
 export async function PUT(req) {
   try {
     const { id, name, nickname, country, role } = await req.json();
@@ -80,7 +78,7 @@ export async function PATCH(req) {
 
     const updatedUser = await prisma.user.update({
       where: { id },
-      data: { image: "/userAvatars/defultAvatar.png" },
+      data: { image: "/userAvatars/defaultAvatar.png" },
     });
 
     return NextResponse.json(updatedUser);

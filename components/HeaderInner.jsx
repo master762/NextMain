@@ -42,6 +42,9 @@ export default function HeaderInner() {
           <Link href="/subscription">
             <li>Subscriptions</li>
           </Link>
+          <Link href="/movies">
+            <li>Films</li>
+          </Link>
         </ul>
       </nav>
       <div className={styles.icons}>
@@ -58,7 +61,7 @@ export default function HeaderInner() {
 
         {session ? (
           <>
-            {/* Если пользователь авторизован, показываем профиль и кнопку выхода */}
+            {/* Если пользователь авторизован */}
             <Link className={styles.account} href="/profile">
               <img src="/img/profile.png" alt="profile" />
             </Link>
@@ -68,7 +71,7 @@ export default function HeaderInner() {
           </>
         ) : (
           <>
-            {/* Если пользователь не авторизован, показываем вход и регистрацию */}
+            {/* Если пользователь не авторизован*/}
             <Link href="/login">
               <button>
                 <span>log in</span>

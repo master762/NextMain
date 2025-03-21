@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async function MoviesList() {
-  const movies = await prisma.film.findMany(); // Получаем все фильмы
+  const movies = await prisma.film.findMany();
 
   return (
     <div>

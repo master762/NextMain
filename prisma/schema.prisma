@@ -54,7 +54,7 @@ model User {
   password String
   age      Int
   country  String
-  image    String @default("/userAvatars/defultAvatar.png")
+  image    String @default("/userAvatars/defaultAvatar.png")
 }
 
 model Film {

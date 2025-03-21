@@ -8,7 +8,7 @@ export default function Profile() {
   const { data: session } = useSession();
   const [isEditing, setIsEditing] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
-  const [avatar, setAvatar] = useState("/userAvatars/defultAvatar.png");
+  const [avatar, setAvatar] = useState("/userAvatars/defaultAvatar.png");
   const [profileData, setProfileData] = useState({
     nickname: "",
     email: "",
