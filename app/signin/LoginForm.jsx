@@ -20,13 +20,13 @@ export default function LoginForm() {
     const result = await signIn("credentials", {
       email: formData.get("email"),
       password: formData.get("password"),
-      redirect: false, // Не перенаправляем автоматически
+      redirect: false,
     });
 
     if (result?.error) {
       setMessage("Invalid email or password");
     } else {
-      router.push("/"); // Переадресация на главную после входа
+      router.push("/");
     }
 
     setPending(false);
@@ -49,6 +49,7 @@ export default function LoginForm() {
             placeholder="Email"
             className={styles.input}
           />
+
           <input
             name="password"
             type="password"
@@ -56,6 +57,7 @@ export default function LoginForm() {
             placeholder="Password"
             className={styles.input}
           />
+
           <p className={styles.desc}>
             Don't have an account?{" "}
             <Link href="/signup">
@@ -68,7 +70,13 @@ export default function LoginForm() {
             </button>
           </div>
         </form>
-        {message && <p className={styles.message}>{message}</p>}
+        {message && (
+          <>
+            <div className={styles.errorMessge}>
+              <p>{message}</p>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

@@ -33,6 +33,18 @@ model Release {
   released String
 }
 
+// таблица поддержки
+model SupportMessage {
+  id        String   @id @default(uuid())
+  firstName String
+  lastName  String
+  email     String
+  phone     String
+  message   String
+  createdAt DateTime @default(now())
+  status    String   @default("New")
+}
+
 // пользователь
 model User {
   id       String @id @default(uuid())
@@ -55,6 +67,7 @@ model Movie {
   genres      Genre[]    @relation("MovieGenres")
   languages   Language[] @relation("MovieLanguages")
   videos      Video[]
+  slug        String     @unique
 }
 
 model Genre {

@@ -5,10 +5,10 @@ import { useSession } from "next-auth/react";
 import styles from "@/styles/profile.module.css";
 
 export default function Profile() {
-  const { data: session, update } = useSession();
+  const { data: session } = useSession();
   const [isEditing, setIsEditing] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
-  const [avatar, setAvatar] = useState("/userAvatars/defaultAvatar.png");
+  const [avatar, setAvatar] = useState("/userAvatars/defultAvatar.png");
   const [profileData, setProfileData] = useState({
     nickname: "",
     email: "",

@@ -1,0 +1,67 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.title {
+  color: var(--White);
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+.table th,
+.table td {
+  padding: 10px;
+  border: 1px solid var(--Black15);
+  text-align: center;
+  color: var(--White);
+}
+.table th {
+  background-color: var(--Black06);
+}
+.table td {
+  background-color: var(--Black08);
+}
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.buttonRemove {
+  color: var(--White);
+  background-color: var(--Red45);
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.buttons button {
+  color: var(--White);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.banButton {
+  background-color: orange;
+}
+
+.deleteButton {
+  background-color: var(--Red45);
+  color: var(--White);
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.pagination button {
+  background-color: var(--Red45);
+  color: var(--White);
+  padding: 5px 10px;
+  border-radius: 5px;
+}

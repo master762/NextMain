@@ -45,7 +45,11 @@
   font-weight: 500;
   margin-bottom: 8px;
 }
-
+.label a {
+  border-bottom: 1px solid var(--White);
+  color: var(--White);
+  text-decoration: none;
+}
 .input,
 .textarea,
 .select {
