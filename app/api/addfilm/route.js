@@ -11,7 +11,16 @@ export async function POST(req) {
       return new Response("Invalid request body", { status: 400 });
     }
 
-    const { title, description, releaseYear, cover, video } = data;
+    const {
+      title,
+      description,
+      releaseYear,
+      cover,
+      video,
+      languages,
+      genres,
+      cast,
+    } = data;
 
     if (cover && typeof cover !== "string") {
       return new Response("Cover must be a string", { status: 400 });
@@ -30,6 +39,9 @@ export async function POST(req) {
         slug,
         cover,
         video,
+        languages: Array.isArray(languages) ? languages.join(",") : "",
+        genres: Array.isArray(genres) ? genres.join(",") : "",
+        cast: Array.isArray(cast) ? cast.join(",") : "",
       },
     });
 

@@ -57,6 +57,7 @@ model User {
   image    String @default("/userAvatars/defaultAvatar.png")
 }
 
+// фильмы
 model Film {
   id          Int    @id @default(autoincrement())
   title       String
@@ -65,37 +66,7 @@ model Film {
   slug        String @unique
   cover       String
   video       String
-}
-
-// фильмы
-model Movie {
-  id          Int        @id @default(autoincrement())
-  title       String
-  description String     @default("no description")
-  cover       String?
-  releaseYear Int
-  genres      Genre[]    @relation("MovieGenres")
-  languages   Language[] @relation("MovieLanguages")
-  videos      Video[]
-  slug        String     @unique
-}
-
-model Genre {
-  id     Int     @id @default(autoincrement())
-  name   String  @unique
-  movies Movie[] @relation("MovieGenres")
-}
-
-model Language {
-  id     Int     @id @default(autoincrement())
-  name   String  @unique
-  movies Movie[] @relation("MovieLanguages")
-}
-
-model Video {
-  id      Int     @id @default(autoincrement())
-  quality String
-  url     String?
-  movieId Int
-  movie   Movie   @relation(fields: [movieId], references: [id])
+  languages   String
+  genres      String
+  cast        String
 }

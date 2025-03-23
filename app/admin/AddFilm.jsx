@@ -7,6 +7,9 @@ export default function AddFilm() {
   const [releaseYear, setReleaseYear] = useState("");
   const [cover, setCover] = useState(null);
   const [video, setVideo] = useState(null);
+  const [languages, setLanguages] = useState("");
+  const [genres, setGenres] = useState("");
+  const [cast, setCast] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -42,6 +45,10 @@ export default function AddFilm() {
       const coverUrl = await handleFileUpload(cover);
       const videoUrl = await handleFileUpload(video);
 
+      const castUrls = await Promise.all(
+        cast.map((file) => handleFileUpload(file))
+      );
+
       const response = await fetch("/api/addfilm", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -51,6 +58,9 @@ export default function AddFilm() {
           releaseYear,
           cover: coverUrl,
           video: videoUrl,
+          languages: languages.split(",").map((lang) => lang.trim()), // Строку в массив
+          genres: genres.split(",").map((genre) => genre.trim()), // Строку в массив
+          cast: castUrls,
         }),
       });
 
@@ -63,6 +73,9 @@ export default function AddFilm() {
       setReleaseYear("");
       setCover(null);
       setVideo(null);
+      setLanguages("");
+      setGenres("");
+      setCast([]);
       alert("Film added successfully!");
     } catch (error) {
       setErrorMessage(error.message || "An error occurred.");
@@ -118,6 +131,31 @@ export default function AddFilm() {
             onChange={(e) => setVideo(e.target.files[0])}
             accept="video/*"
             required
+          />
+        </div>
+        <div>
+          <label>Languages (comma-separated):</label>
+          <input
+            type="text"
+            value={languages}
+            onChange={(e) => setLanguages(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Genres (comma-separated):</label>
+          <input
+            type="text"
+            value={genres}
+            onChange={(e) => setGenres(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Cast (photos):</label>
+          <input
+            type="file"
+            multiple
+            onChange={(e) => setCast(Array.from(e.target.files))}
+            accept="image/*"
           />
         </div>
         <div>

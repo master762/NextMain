@@ -2,20 +2,8 @@
 import { useState } from "react";
 import styles from "@/styles/Cast.module.css";
 
-const images = [
-  "/img/cast.png",
-  "/img/cast1.png",
-  "/img/cast2.png",
-  "/img/cast3.png",
-  "/img/cast4.png",
-  "/img/cast5.png",
-  "/img/cast6.png",
-  "/img/cast7.png",
-  "/img/cast8.png",
-  "/img/cast9.png",
-];
-
-export default function CastSlider() {
+export default function CastSlider({ cast }) {
+  const images = cast ? cast.split(",") : [];
   const [index, setIndex] = useState(0);
   const visibleCount = 8;
 
@@ -30,6 +18,8 @@ export default function CastSlider() {
       prev - 2 >= 0 ? prev - 2 : images.length - visibleCount
     );
   };
+
+  if (images.length === 0) return null;
 
   return (
     <div className={styles.cast}>
@@ -55,7 +45,7 @@ export default function CastSlider() {
             {images.map((src, i) => (
               <img
                 key={i}
-                src={src}
+                src={src.trim()}
                 alt={`Cast ${i}`}
                 className={styles.slideImage}
               />

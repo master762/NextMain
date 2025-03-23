@@ -49,6 +49,7 @@
   color: var(--White);
   font-size: 18px;
   font-weight: 500;
+  margin-bottom: 40px;
 }
 .add span {
   font-size: 30px;
@@ -178,8 +179,13 @@
   transition: transform 0.5s ease-in-out;
 }
 
-/* Стили для модального окна */
-/* Стили для затемненного фона */
+.slide {
+  display: flex;
+  gap: 20px;
+  min-width: 100%;
+  justify-content: center;
+}
+
 .modalOverlay {
   position: fixed;
   top: 0;
