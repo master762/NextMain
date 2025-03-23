@@ -60,7 +60,7 @@ export default function LoginForm() {
 
           <p className={styles.desc}>
             Don't have an account?{" "}
-            <Link href="/signup">
+            <Link href="/login">
               <span>Sign up</span>
             </Link>
           </p>

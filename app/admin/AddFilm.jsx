@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-
+import styles from "@/styles/AddFilm.module.css";
 export default function AddFilm() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -58,8 +58,8 @@ export default function AddFilm() {
           releaseYear,
           cover: coverUrl,
           video: videoUrl,
-          languages: languages.split(",").map((lang) => lang.trim()), // Строку в массив
-          genres: genres.split(",").map((genre) => genre.trim()), // Строку в массив
+          languages: languages.split(",").map((lang) => lang.trim()),
+          genres: genres.split(",").map((genre) => genre.trim()),
           cast: castUrls,
         }),
       });
@@ -85,11 +85,11 @@ export default function AddFilm() {
   };
 
   return (
-    <div>
-      <h1>Add a Film</h1>
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className={styles.addFilmContainer}>
+      <h1 className={styles.addFilmTitle}>Add a Film</h1>
+      {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+      <form onSubmit={handleSubmit} className={styles.addFilmForm}>
+        <div className={styles.inputGroup}>
           <label>Title:</label>
           <input
             type="text"
@@ -98,7 +98,7 @@ export default function AddFilm() {
             required
           />
         </div>
-        <div>
+        <div className={styles.inputGroup}>
           <label>Description:</label>
           <textarea
             value={description}
@@ -106,7 +106,7 @@ export default function AddFilm() {
             required
           />
         </div>
-        <div>
+        <div className={styles.inputGroup}>
           <label>Release Year:</label>
           <input
             type="number"
@@ -115,7 +115,7 @@ export default function AddFilm() {
             required
           />
         </div>
-        <div>
+        <div className={styles.inputGroup}>
           <label>Cover:</label>
           <input
             type="file"
@@ -124,7 +124,7 @@ export default function AddFilm() {
             required
           />
         </div>
-        <div>
+        <div className={styles.inputGroup}>
           <label>Video:</label>
           <input
             type="file"
@@ -133,24 +133,24 @@ export default function AddFilm() {
             required
           />
         </div>
-        <div>
-          <label>Languages (comma-separated):</label>
+        <div className={styles.inputGroup}>
+          <label>Languages :</label>
           <input
             type="text"
             value={languages}
             onChange={(e) => setLanguages(e.target.value)}
           />
         </div>
-        <div>
-          <label>Genres (comma-separated):</label>
+        <div className={styles.inputGroup}>
+          <label>Genres :</label>
           <input
             type="text"
             value={genres}
             onChange={(e) => setGenres(e.target.value)}
           />
         </div>
-        <div>
-          <label>Cast (photos):</label>
+        <div className={styles.inputGroup}>
+          <label>Cast :</label>
           <input
             type="file"
             multiple
@@ -158,7 +158,7 @@ export default function AddFilm() {
             accept="image/*"
           />
         </div>
-        <div>
+        <div className={styles.buttonGroup}>
           <button type="submit" disabled={isLoading}>
             {isLoading ? "Adding..." : "Add Film"}
           </button>

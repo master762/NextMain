@@ -1,23 +1,29 @@
 import Link from "next/link";
 import { PrismaClient } from "@prisma/client";
-
+import styles from "@/styles/FilmPage.module.css";
 const prisma = new PrismaClient();
 
 export default async function MoviesList() {
   const movies = await prisma.film.findMany();
 
   return (
-    <div>
-      <h1>Список фильмов</h1>
-      <ul>
+    <>
+      <div className="container">
+        <h1 className={styles.Title}>List of films</h1>
+
         {movies.map((movie) => (
-          <li key={movie.id}>
+          <div className={styles.cards} key={movie.id}>
             <Link href={`/movie/${movie.slug}`}>
-              {movie.title} ({movie.releaseYear})
+              <div className={styles.card}>
+                <p>{movie.title}</p>
+                <p>{movie.description}</p>
+                <p>{movie.releaseYear}</p>
+                <img src={movie.cover} alt={movie.description} />
+              </div>
             </Link>
-          </li>
+          </div>
         ))}
-      </ul>
-    </div>
+      </div>
+    </>
   );
 }

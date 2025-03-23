@@ -1,177 +1,70 @@
-.film {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.title {
-  color: white;
-  font-size: 20px;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 20px;
+.addFilmContainer {
+  background-color: var(--Black10);
+  color: var(--White);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-.cover {
-  width: 49%;
-  height: 500px;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  border: 2px solid var(--Black15);
-  position: relative;
-}
-.buttonContainer {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  align-items: center;
-}
-.UiButton,
-.UiButtonAdd {
-  width: 60px;
-  height: 30px;
-  border-radius: 12px;
-  border: 1px solid var(--Black15);
-  background-color: var(--Red45);
-  color: var(--White);
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.3s;
-  position: absolute;
-  bottom: 10px;
-}
-.UiButton {
-  left: 10px;
-}
-.UiButtonAdd {
-  right: 10px;
-}
-.UiButton:hover,
-.UiButtonAdd:hover {
-  background-color: var(--Gray60);
-  border-color: var(--Red45);
-  transform: scale(1.05);
-}
-.upload {
-  color: var(--White);
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
-.titleDesc {
-  color: var(--White);
-  font-size: 60px;
+.addFilmTitle {
   text-align: center;
-  margin-bottom: 60px;
-}
-.desc {
   color: var(--White);
-  font-size: 15px;
-  min-height: 500px;
-  width: 49%;
-  border: 2px solid var(--Black15);
-  padding: 10px;
-  position: relative;
 }
-.videos {
-  margin-top: 60px;
-  width: 100%;
-  border: 1px solid var(--Black15);
-  color: var(--White);
-  padding: 20px;
-}
-.video {
-  width: 100%;
-  min-height: 100px;
-  color: var(--White);
-  margin-top: 100px;
-  position: relative;
-  border-bottom: 1px solid;
-  border-color: rgb(231, 13, 13, 0.2);
-}
-.ReleaseData,
-.languages,
-.genres {
-  width: 33%;
-  min-height: 200px;
-  text-align: center;
-  margin-top: 60px;
-  border: 2px solid var(--Black15);
-  position: relative;
-  color: var(--White);
-  padding: 20px;
-}
-.ReleaseData p,
-.languages span,
-.genres p {
-  color: rgb(185, 173, 173);
-}
-.container {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 20px;
-}
-.container div {
-  background-color: rgb(53, 53, 53);
-  padding: 10px;
-  border-radius: 12px;
-  border: 1px solid var(--Black15);
-  position: relative;
-}
-.person {
-  color: var(--White);
-  margin-top: 60px;
-  margin-bottom: 60px;
-  width: 50%;
+
+.addFilmForm {
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-.save {
-  width: 100px;
-  height: 50px;
-  border-radius: 12px;
-  border: 1px solid var(--Black15);
-  background-color: var(--Red45);
-  color: var(--White);
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.deleteButton {
-  background-color: var(--Red45);
-  color: var(--White);
-  position: absolute;
-  top: -5px;
-  right: 0;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  font-size: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.newLanguage,
-.input {
-  position: absolute;
-  bottom: 10px;
-  left: 35%;
-  width: 35%;
-  transition: 0.3s;
-  outline: none;
-  border-radius: 6px;
-  padding-left: 5px;
+.inputGroup {
+  margin-bottom: 15px;
 }
-.newLanguage:focus,
-.input:focus {
-  width: 80%;
-  left: 40px;
-  border: 1px solid var(--Red45);
+
+.inputGroup label {
+  font-weight: bold;
+  color: var(--White);
+}
+
+.inputGroup input,
+.inputGroup textarea {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid var(--Grey60);
+  background-color: var(--Black08);
+  color: var(--White);
+  width: 100%;
+}
+
+.inputGroup textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.errorMessage {
+  color: var(--Red50);
+  text-align: center;
+}
+
+.buttonGroup {
+  text-align: center;
+}
+
+.buttonGroup button {
+  background-color: var(--Red50);
+  color: var(--White);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.buttonGroup button:disabled {
+  background-color: var(--Grey60);
+  cursor: not-allowed;
+}
+
+.buttonGroup button:hover {
+  background-color: var(--Red45);
 }

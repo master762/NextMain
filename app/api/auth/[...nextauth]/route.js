@@ -40,15 +40,28 @@ export const authOptions = {
           throw new Error("Invalid password");
         }
 
-        return { id: user.id, name: user.nickname, email: user.email };
+        return {
+          id: user.id,
+          name: user.nickname,
+          email: user.email,
+          role: user.role,
+        };
       },
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
   session: { strategy: "jwt" },
   callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.role = user.role;
+        token.sub = user.id;
+      }
+      return token;
+    },
     async session({ session, token }) {
       session.user.id = token.sub;
+      session.user.role = token.role;
       return session;
     },
   },

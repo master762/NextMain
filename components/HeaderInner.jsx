@@ -6,7 +6,7 @@ import styles from "@/styles/TheHeader.module.css";
 import Link from "next/link";
 
 export default function HeaderInner() {
-  const { data: session } = useSession(); // Получаем данные о сессии
+  const { data: session } = useSession();
   const [isActive, setIsActive] = useState(false);
   const searchRef = useRef(null);
 
@@ -45,6 +45,12 @@ export default function HeaderInner() {
           <Link href="/movies">
             <li>Films</li>
           </Link>
+          {/*   если есть роль админ */}
+          {session?.user?.role === "admin" && (
+            <Link href="/admin">
+              <li>admin</li>
+            </Link>
+          )}
         </ul>
       </nav>
       <div className={styles.icons}>
@@ -71,7 +77,7 @@ export default function HeaderInner() {
           </>
         ) : (
           <>
-            {/* Если пользователь не авторизован*/}
+            {/* Если пользователь не авторизован */}
             <Link href="/login">
               <button>
                 <span>log in</span>
