@@ -16,7 +16,7 @@ export async function POST(req) {
     const films = await prisma.film.findMany({
       where: {
         title: {
-          contains: query.toLowerCase(), // Приводим строку поиска к нижнему регистру
+          contains: query.toLowerCase(),
         },
       },
     });

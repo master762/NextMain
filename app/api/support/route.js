@@ -3,7 +3,6 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// Получение всех заявок
 export async function GET() {
   try {
     const messages = await prisma.supportMessage.findMany();
@@ -17,7 +16,6 @@ export async function GET() {
   }
 }
 
-// Создание новой заявки (твой существующий код)
 export async function POST(req) {
   try {
     const body = await req.json();
@@ -42,7 +40,7 @@ export async function POST(req) {
         email: body.email,
         phone: body.phone,
         message: body.message,
-        status: "new", // Добавил статус по умолчанию
+        status: "new",
       },
     });
 
@@ -59,7 +57,6 @@ export async function POST(req) {
   }
 }
 
-// Обновление статуса заявки
 export async function PUT(req) {
   try {
     const { id, status } = await req.json();
