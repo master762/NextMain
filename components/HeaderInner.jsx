@@ -8,18 +8,53 @@ import Link from "next/link";
 export default function HeaderInner() {
   const { data: session } = useSession();
   const [isActive, setIsActive] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [films, setFilms] = useState([]);
   const searchRef = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(event) {
+      // Проверяем, был ли клик вне поля ввода и списка результатов
       if (searchRef.current && !searchRef.current.contains(event.target)) {
-        setIsActive(false);
+        setIsActive(false); // Закрыть поле поиска
+        setFilms([]); // Очистить результаты поиска
       }
     }
 
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
+
+  const handleSearchChange = async (event) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+
+    if (query.trim() === "") {
+      setFilms([]); // Очищаем результаты поиска, если запрос пустой
+      return;
+    }
+
+    try {
+      const res = await fetch("/api/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setFilms(data.films); // Обновляем результаты поиска
+        setIsActive(true); // Открыть результаты
+      } else {
+        setFilms([]);
+      }
+    } catch (error) {
+      console.error("Error searching films:", error);
+      setFilms([]);
+    }
+  };
 
   return (
     <div className={styles.contentContainer}>
@@ -45,7 +80,7 @@ export default function HeaderInner() {
           <Link href="/movies">
             <li>Films</li>
           </Link>
-          {/*   если есть роль админ */}
+          {/* если есть роль админ */}
           {session?.user?.role === "admin" && (
             <Link href="/admin">
               <li>admin</li>
@@ -59,8 +94,24 @@ export default function HeaderInner() {
           className={`${styles.search} ${isActive ? styles.active : ""}`}
           onClick={() => setIsActive(true)}
         >
-          <input type="text" placeholder="Search..." />
+          <input
+            type="text"
+            placeholder="Search..."
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
           <img src="/img/search.png" alt="Search" />
+          {isActive && films.length > 0 && (
+            <div className={styles.searchResults}>
+              <ul>
+                {films.map((film) => (
+                  <li key={film.id}>
+                    <Link href={`/movie/${film.slug}`}>{film.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         <img src="/img/notifica.png" alt="Notifications" />
